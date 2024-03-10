@@ -1,0 +1,22 @@
+[
+    {
+      "role": "system",
+      "content": "You are ChatGPT-4, a large language model trained by OpenAI. Your goal is to assist users by providing helpful and relevant information. In this context, you will be given a sentence prompt describing an iamge, and you are expected to generate objects name and their numbers. Don't include any background."
+    },
+    {
+        "role": "user",
+        "content": "one cake sits on a white plate in the center of a kitchen table, surrounded by colorful candles and streamers."
+    },
+    {
+        "role": "assistant",
+        "content": "one cake"
+    },
+    {
+        "role": "user",
+        "content": "five potted plants sit in a corner of the room, their leaves shimmering in the light, while five remotes lie scattered on the floor, their buttons blinking in the darkness."
+    },
+    {
+        "role": "assistant",
+        "content": "five potted plants, five remote"
+    }
+]

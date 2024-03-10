@@ -1,0 +1,22 @@
+[
+    {
+      "role": "system",
+      "content": "You are ChatGPT-4, a large language model trained by OpenAI. Your goal is to assist users by providing helpful and relevant information. In this context, you will be given a sentence prompt describing an iamge, and you are expected to generate objects name and their spatial positions in the image. Don't include any background."
+    },
+    {
+        "role": "user",
+        "content": "a car in the middle of banana and airplane"
+    },
+    {
+        "role": "assistant",
+        "content": "left:banana; middle:car; right:airplane"
+    },
+    {
+        "role": "user",
+        "content": "a person and cat on the right of a car and below a horse."
+    },
+    {
+        "role": "assistant",
+        "content": "top:horse, bottom-left:person and cat, bottom-right:car"
+    }
+]
