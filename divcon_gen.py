@@ -445,7 +445,7 @@ def run(meta,models,info_files, p, starting_noise=None,iter_id=0, img_id=0, save
 
     samples_fake, noise_list = sampler.sample(S=steps, shape=shape, input=input, uc=uc, guidance_scale=config.guidance_scale, mask=inpainting_mask, x0=z0, loss_type=args.loss_type)
 
-    # - - - - - extract foreground noises - - - - - #
+    # - - - - - extract first round noises - - - - - #
     if stage == 'fg':
         clip_model, preprocess = clip.load("ViT-B/32", device=device)
         samples_img = autoencoder.decode(samples_fake)
@@ -483,7 +483,6 @@ def run(meta,models,info_files, p, starting_noise=None,iter_id=0, img_id=0, save
             else:
                 better_boxes.append(box)
         print("worse boxes: ", worse_id)
-    # if stage == 'fg':
         # mask noise
         if len(worse_boxes)>0 and len(better_boxes)>0:
             masked_noises = []
@@ -510,10 +509,10 @@ def run(meta,models,info_files, p, starting_noise=None,iter_id=0, img_id=0, save
                     bottom = min(512, bottom+5)
                     blurred_mask[:, :, (top):(bottom), (left):(right)] = 0
 
-                noise = noise * blurred_mask + rdm_noise * (1. - blurred_mask)
+                noise = noise * blurred_mask
                 masked_noises.append(noise)
             
-            return masked_noises, worse_id, blurred_mask
+            return noise_list, worse_id, blurred_mask
 
     with torch.no_grad():
         samples_fake = autoencoder.decode(samples_fake)
@@ -614,7 +613,6 @@ if __name__ == "__main__":
     info_files = {}
 
     for i, prompt in tqdm(enumerate(prompts), total=len(prompts)):
-
         try:
             for meta in meta_list:
                 pp = prompt[0]
@@ -682,6 +680,5 @@ if __name__ == "__main__":
         except Exception as e:
             print("error:", e)
             continue
-
 
 

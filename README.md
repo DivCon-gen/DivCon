@@ -44,13 +44,13 @@ Download the layout conditioned model [GLIGEN](https://huggingface.co/gligen/gli
 To generate images from numerical prompts in HRS using layouts predicted by divcon, run:
 ```bash
 python divcon_gen.py --ckpt gligen_checkpoints/diffusion_pytorch_model.bin --file_save HRS 
-                     --type counting --box_pickle ./LLM_gen_layout/HRS_counting.p
+                     --type counting --pred_layout ./LLM_gen_layout/HRS_counting.p
 ```
 Where
 - `--ckpt`: Path to the GLIGEN checkpoint
 - `--file_save`: Path to save the generated images
 - `--type`: The category to test, counting or spatial
-- `--box_pickle`: Path to the predicted layout from LLM
+- `--pred_layout`: Path to the predicted layout from LLM
 - `--use_llm`: Whether to use LLM to generate the layout. If you're using LLM (GPT-4), set your openai API key as follows:
 ```bash
 export OPENAI_API_KEY='your-api-key'

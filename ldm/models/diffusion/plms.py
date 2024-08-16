@@ -73,12 +73,10 @@ class PLMSSampler(object):
             img = input["x"]
         else:
             img = input["x"][0]
-            img2 = input["x"][1]
+            noise_series = input["x"]
             input["x"] = img
             #set froze area mask
             froze_mask = input["froze_area"]
-            froze_area = img * froze_mask
-            froze_area_2 = img2 * froze_mask
 
 
         if img == None:     
@@ -94,8 +92,6 @@ class PLMSSampler(object):
             alphas = self.alpha_generator_func(len(time_range))
 
         noise_list = []
-        flag1 = 1
-        flag2 = 1
         for i, step in enumerate(time_range):
             print('step ', i)
 
@@ -127,18 +123,11 @@ class PLMSSampler(object):
                     input["x"] = x
             img, pred_x0, e_t = self.p_sample_plms(input, ts, index=index, uc=uc, guidance_scale=guidance_scale, old_eps=old_eps, t_next=ts_next)
 
+
             if stage=='fg':
-                if step<750 and flag1:
-                    noise_list.append(img)
-                    flag1 = 0
-                if step<300 and flag2:
-                    noise_list.append(img)
-                    flag2 = 0
-            else:
-                if step>750:
-                    img = img*(1. - froze_mask) + froze_area
-                elif step>300:
-                    img = img*(1. - froze_mask) + froze_area_2    
+                noise_list.append(img)
+            elif step>150:
+                img = img*(1. - froze_mask) + noise_series[i]*froze_mask
             
             
             input["x"] = img
