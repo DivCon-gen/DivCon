@@ -672,6 +672,8 @@ if __name__ == "__main__":
                     if worse_id == None: continue
                     meta['froze_area'] = froze_area
                     name_worse_box = process_box_phrase([o_names[id] for id in worse_id], [o_boxes[id] for id in worse_id])
+                    worse_l = np.array([l[id] for id in worse_id])
+                    meta['locations'] = worse_l/512
                     worse_position, worse_box_att = Pharse2idx_2(pp, name_worse_box)
                     meta['ll'] = worse_box_att
                     meta['position'] = worse_position
