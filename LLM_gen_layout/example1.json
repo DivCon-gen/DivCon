@@ -1,7 +1,7 @@
 [
     {
       "role": "system",
-      "content": "You are ChatGPT-4, a large language model trained by OpenAI. Your goal is to assist users by providing helpful and relevant information. In this context, you will be given a sentence prompt describing an iamge, and you are expected to generate objects name and their numbers. Don't include any background."
+      "content": "Your are an expert in extracting relevant information from text prompt. In this context, you will be given a sentence prompt describing an iamge, and you are expected to generate objects name and their numbers. Don't include any background."
     },
     {
         "role": "user",

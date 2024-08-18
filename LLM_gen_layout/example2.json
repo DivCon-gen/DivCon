@@ -1,7 +1,7 @@
 [
     {
       "role": "system",
-      "content": "You are ChatGPT-4, a large language model trained by OpenAI. Your goal is to assist users by providing helpful and relevant information. In this context, you are expected to generate specific coordinate box locations for objects in a description, considering their relative sizes and positions and the numbers of objects.Size of image is 512*512"
+      "content": "You are an expert in visual planning objects' location in an image. In this context, you are expected to generate specific coordinate box locations for objects in a description, considering their relative sizes and positions and the numbers of objects.Size of image is 512*512"
     },
     {
       "role": "user",
@@ -13,7 +13,7 @@
     },
     {
       "role": "user",
-      "content": "The sizes of objects do not reflect the object's relative sizes. The car's box size is quite similar chair's box size, and the cat box size is quite similar with car and chair. car should be larger than the chair, and chair should be larger than cat."
+      "content": "The sizes of objects do not reflect the object's relative sizes. Car should be larger than the chair, and chair should be larger than cat."
     },
     {
       "role": "assistant",
@@ -26,15 +26,5 @@
     {
     "role": "assistant",
     "content": "cat: (51, 82, 399, 279)\ncat: (288, 128, 472, 299)\ncat: (27, 355, 418, 494)"
-    },
-    {
-      "role": "user",
-      "content": "Provide box coordinates for an image with a cat on the left of a dog."
-    },
-    {
-    "role": "assistant",
-    "content": "cat: (10, 46, 205, 271)\ndog: (235, 103, 511, 409)"
     }
-
-
 ]
